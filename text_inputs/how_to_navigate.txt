@@ -1,0 +1,17 @@
+**Select your city (start here)**
+
+After the input, the platform first checks if a corresponding page is found on Wikipedia and it seems a city, handling one disambiguation case (the one for which the city name is the same of the state). Other disambiguation cases are not handled (see *Limitations* below).
+
+**Information for your city**
+
+Once the city is checked, the user confirms its choice and is re-directed to the page "Information for your city". Here, if it is the first launch of the page, all information and session states are trying to be set: a brief Wikipedia search, a weather search and three Google Maps searches for attractions, restaurants and hotels. If outputs are valid, they are displayed to the user. The user then needs to input two more values: the number of days of the holiday, and the intensity of sightseeing. Please note that inputing one value will rerun the page and, if some information is missing in the previous sections, it will launch Playwright to try and fetch again the missing information. Therefore, make sure to first wait for Playwright to be over (check if "running" on the up-right corner of streamlit) and then input the second value. Once confirmed by pressing the button, the values are stored and the user is re-directed to the last page, the "Visit guide".
+
+*Note*: if "What about the weather?" is taking long to load, try re-clicking on the Information for your city page from the sidebar.
+
+*Note*: once Playwright has finished running, if the user moves between pages (without changing input city) and goes back to "Information for your city", Playwright will not re-launch, but the values will be retrieved from the session state.
+
+**Visit guide**
+
+Here the maps are shown to the user. Links can be clicked to open the Google Maps search for each of the shown attractions.
+
+*Note*: if found attractions are less than the number of attractions to visit, maps will still output one per day, but total attractions will be a number equal to how many of them was found in Playwright. 

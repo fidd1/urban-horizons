@@ -1,0 +1,40 @@
+A brief overview of some arised limitations of the project, along with related potentialities, is presented below.
+
+**Language**
+
+Please note that the platform is intended to work on a set language "en" for both Wikipedia and Playwright library.
+
+**KMeans logic**
+
+To make the output more interesting, I have decided to try using the Scikit-learn library in order to group the found attractions according to their relative distance. I prefer to not rebalance the number of items in the clusters after performing kmeans.predict() (they can be quite different from day to day, try "Turin", "3 days", "relaxed tourist") as in this way I avoid having days with long distances between attractions. In the same way, I decide to use a max_places number of attractions (max_places = days_trip * intensity_trip) before performing the KMeans, to have an exact number of attractions for the total of days. This rough truncation of attractions number could instead be avoided to find better populated clusters of attractions, and later select the interested number of attractions per day.
+
+**City inputs**
+
+Please note that, to restrict the handling of errors related to not-found pages on Wikipedia, I have avoided iterating the check_page() function with more alternative options in case of disambiguation cases. The only handled case is indeed when a city has not a Wikipedia page under the domain "https://en.wikipedia.org/wiki/nameofthecity", but it does under the "https://en.wikipedia.org/wiki/nameofthecity_city" (see when inputing "Panama". Please note that, however, the Playwright fetching with "Panama" outputs uncomplete information). If trying inputing "Ragusa", the case of an omonim city in Sicily, Italy and in Croatia, the platform will not recognize the city name. Another example comes with "Panama" in Panama City, Florida, which is not handled as the check_page() finding goes for the capital of the omonim state and not the US city.
+
+A check is also done wheter the inserted input is likely to be a city by analyzing some keywords in the first sentences of the Wikipedia extracted summary (see when inputing "dog", "Bocconi" or "wine"). This choice, which wants to simulate a checking method for the handling of non-city inputs, still can allow for potential errors. 
+
+**Playwright**
+
+The idea of using the Playwright library is to avoid paid APIs and facilitate the collection of all information through Google Maps. Playwright is run three times to get:
+- attractions information;
+- restaurants information;
+- hotels information.
+
+Please note that the last two runs follow the same logic as the first one, therefore they could be skipped in the code to avoid long waiting time.
+
+As most of the outputs depend on the success of the Playwright session, which is influenced by the system responsiveness, it can happen that some cities might not show any output (due to error or break) but, once reloaded, they would have the correct output. This is why re-entering the Information for your city page will re-launch Playwright to fetch places if not previously stored in session state. In this way, the page should eventually output the correct results.
+
+Additionally, the case for which some pictures extracted are outputing as empty in the page Information for your city is not handled, for the sake of simplicity.
+
+**Maps output**
+
+For the sake of the project, the maps are shown only if the Playwright (pw) search is successful (and has fetched enough attractions). The problem could be assessed by integrating the logic of re-running pw fetching until enough individual attractions are gathered, if user inputs more than those already fetched for the general output. In this way, also a bigger amount of days, or attractions per day, could be planned.
+
+I have initially dediced to integrate the Travelling Salesman Problem (TSP) solving, to connect all markers of attractions on the maps. However, I have encountered errors when solving the TSP with NetworkX's (nx) when:
+- G = nx.from_numpy_array(matrix);
+- tsp_solved = nx.approximation.traveling_salesman_problem(G).
+
+As the debugging became complicated, I decided to just highlight in better markdown the attractions on the map.
+
+Lastly, some attractions are not showing on the map and the case is also not handled so far.

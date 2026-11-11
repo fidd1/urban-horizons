@@ -1,0 +1,15 @@
+Main libraries:
+- streamlit, https://docs.streamlit.io/
+- requests 2.32.3, https://pypi.org/project/requests/
+- Wikipedia-API 0.6.0, https://pypi.org/project/Wikipedia-API/
+- beautifulsoup4 4.12.3, https://pypi.org/project/beautifulsoup4/
+- Playwright, https://playwright.dev/python/docs/api/class-playwright
+- geopy 2.4.1, https://pypi.org/project/geopy/
+- certifi 2024.6.2, https://pypi.org/project/certifi/
+- ssl 1.16, https://pypi.org/project/ssl/
+- numpy 2.0.0, https://pypi.org/project/numpy/
+- KMeans from sklearn.cluster, https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html
+- folium 0.17.0, https://pypi.org/project/folium/
+
+Other documentation:
+- wttr.in, https://github.com/chubin/wttr.in/blob/master/README.md

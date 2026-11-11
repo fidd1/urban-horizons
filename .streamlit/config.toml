@@ -1,0 +1,16 @@
+[theme]
+
+# Background color for main area
+backgroundColor = '#CEE1DE'
+
+# Primary color for interactive elements
+primaryColor = '#5FA69A'
+
+# Background color for sidebar
+secondaryBackgroundColor = '#23796A'
+
+# Color used for almost all text
+textColor = '#000000'
+
+# Font family. Accepted values (serif, sans serif, monospace). Default: "sans serif"
+font = "sans serif"
